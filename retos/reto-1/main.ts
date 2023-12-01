@@ -1,3 +1,4 @@
+// @ts-expect-error
 function findFirstRepeated(gifts) {
   let obj = {}
   let res = -1;
