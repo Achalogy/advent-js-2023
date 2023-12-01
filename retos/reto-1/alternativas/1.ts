@@ -1,9 +1,9 @@
 function findFirstRepeated(gifts) {
   let obj = {}
 
-  for (let i in gifts) {
-    let g = gifts[i]
-    if (obj[g]) return (g)
+  for (const i in gifts) {
+    const g = gifts[i]
+    if (obj[g]) return g
     obj[g] = true
   }
 
