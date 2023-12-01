@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "@types/node": "^20.10.1",
+    "fs": "^0.0.1-security",
+    "jest": "^29.7.0"
+  }
+}
