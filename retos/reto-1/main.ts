@@ -3,12 +3,11 @@ function findFirstRepeated(gifts) {
   let res = -1;
 
   gifts.find(g => {
-    if (!obj[g])
-      obj[g] = 1
-    else {
+    if (obj[g]) {
       res = g;
-      return true
+      return true;
     }
+    obj[g] = true
   })
 
   return res
