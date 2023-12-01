@@ -9,5 +9,3 @@ function findFirstRepeated(gifts) {
 
   return -1
 }
-
-module.exports = findFirstRepeated
