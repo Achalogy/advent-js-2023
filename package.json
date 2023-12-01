@@ -3,5 +3,32 @@
     "@types/node": "^20.10.1",
     "fs": "^0.0.1-security",
     "jest": "^29.7.0"
+  },
+  "scripts": {
+    "test": "jest",
+    "test:1": "jest -i retos/reto-1/reto1.test.js",
+    "test:2": "jest -i retos/reto-2/reto2.test.js",
+    "test:3": "jest -i retos/reto-3/reto3.test.js",
+    "test:4": "jest -i retos/reto-4/reto4.test.js",
+    "test:5": "jest -i retos/reto-5/reto5.test.js",
+    "test:6": "jest -i retos/reto-6/reto6.test.js",
+    "test:7": "jest -i retos/reto-7/reto7.test.js",
+    "test:8": "jest -i retos/reto-8/reto8.test.js",
+    "test:9": "jest -i retos/reto-9/reto9.test.js",
+    "test:10": "jest -i retos/reto-10/reto10.test.js",
+    "test:11": "jest -i retos/reto-11/reto11.test.js",
+    "test:12": "jest -i retos/reto-12/reto12.test.js",
+    "test:13": "jest -i retos/reto-13/reto13.test.js",
+    "test:14": "jest -i retos/reto-14/reto14.test.js",
+    "test:15": "jest -i retos/reto-15/reto15.test.js",
+    "test:16": "jest -i retos/reto-16/reto16.test.js",
+    "test:17": "jest -i retos/reto-17/reto17.test.js",
+    "test:18": "jest -i retos/reto-18/reto18.test.js",
+    "test:19": "jest -i retos/reto-19/reto19.test.js",
+    "test:20": "jest -i retos/reto-20/reto20.test.js",
+    "test:21": "jest -i retos/reto-21/reto21.test.js",
+    "test:22": "jest -i retos/reto-22/reto22.test.js",
+    "test:23": "jest -i retos/reto-23/reto23.test.js",
+    "test:24": "jest -i retos/reto-24/reto24.test.js"
   }
 }
