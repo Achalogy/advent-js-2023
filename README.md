@@ -2,6 +2,8 @@
 
 Por favor dale a la estrellita y sígueme en YouTube y mis redes, este repositorio me ha costado demasiadas horas de trabajo:
 
+[![wakatime](https://wakatime.com/badge/user/dfad5e3e-d673-48d4-a2d9-29c1c546ed80/project/018c25e2-b7d8-41bd-b08d-234b9e801de0.svg)](https://wakatime.com/badge/user/dfad5e3e-d673-48d4-a2d9-29c1c546ed80/project/018c25e2-b7d8-41bd-b08d-234b9e801de0)
+
 Repositorio donde estoy subiendo y explicando los retos del Advent JS 2023.
 
 # 🎮 | Retos
