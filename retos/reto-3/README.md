@@ -28,7 +28,7 @@ A tener en cuenta:
 
 # Solución
 
-Debemos revisar la `cadena más larga`, posición por posición hasta encontrar la posición que no sea igual en la `cadena más corta`. Se hace esto por que la cadena más larga siempre será la que tiene el paso extra o el paso faltante.
+Debemos revisar la `cadena más larga`, posición por posición, hasta encontrar la posición que no sea igual en la `cadena más corta`. Se hace esto porque la cadena más larga siempre será la que tiene el paso extra o el paso faltante.
 
 Hay muchas formas de hacerlo, una de estas es:
 
