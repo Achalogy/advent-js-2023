@@ -30,21 +30,19 @@ manufacture(gifts, materials); // []
 
 Vamos a basar la solución en un `Set` que al cambiar de tamaño nos dirá si ese regalo contiene más letras de las que contenemos en materiales.
 
-Ya que vamos a tener que crear un arreglo de cada letra, vamos primero a separar materiales, porque no es óptimo realizarlo por cada regalo, siempre será el mismo: `const mate = materials.split("")`.
+La solución se basa en filtrar los regalos que cumplan con que el `Set` de la unión de `g` (regalo) y `materials` (`g + materials`), tengan la misma longitud que `materials`, esto se logra porque `Set` no va a permitir elementos repetidos.
 
-Ahora solo queda filtrar los regalos que cumplan con que el `Set` de la unión de `g` (regalo) y `mate`, tengan la misma longitud que `mate`, esto se logra porque `Set` no va a permitir elementos repetidos.
+Usamos *spread operator* para separar en letras `g + materials`, ya que al ser un string, no se puede ver como un arreglo, así que lo convertimos a uno. Luego se vuelve a usar para convertir `Set` en un arreglo. *Spread operator* separa en pedacitos cada uno, así que al ponerlo dentro de un arreglo vacío, cada parte va a pasar a formar parte del arreglo.
 
 ## Ejemplo
 
 ```ts
-const mate = ["t", "r", "o", "n", "e", "s", "a"]
+const g = "tren" // g en la primer iteración
 
-const regalo1 = ["t", "r", "e", "n"]
-
-const x = [...new Set([...regalo1, ...mate])]
+const x = [...new Set(...[g + materials])]
 
 console.log(x) // [ "t", "r", "e", "n", "o", "s", "a" ]
 
 ```
 
-En este caso `mate` es exactamente igual a `x`, porque no agregamos nada nuevo, es decir que **si** podemos construir este regalo.
+En este caso `materials` es exactamente igual a `x`, por lo tanto tienen la misma longitud, es decir que **sí** podemos construir este regalo.

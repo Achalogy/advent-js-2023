@@ -1,10 +1,8 @@
 function manufacture(gifts, materials) {
-  const mate = materials.split("")
-
   return gifts.filter(g => {
-    const x = [...new Set([...g, ...mate])]
+    const x = [...new Set(...[g + materials])]
 
-    return x.length == mate.length
+    return x.length == materials.length
   })
 }
 
