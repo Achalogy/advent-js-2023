@@ -32,7 +32,7 @@ Vamos a basar la solución en un `Set` que al cambiar de tamaño nos dirá si es
 
 La solución se basa en filtrar los regalos que cumplan con que el `Set` de la unión de `g` (regalo) y `materials` (`g + materials`), tengan la misma longitud que `materials`, esto se logra porque `Set` no va a permitir elementos repetidos.
 
-Usamos *spread operator* para separar en letras `g + materials`, ya que al ser un string, no se puede ver como un arreglo, así que lo convertimos a uno. Luego se vuelve a usar para convertir `Set` en un arreglo. *Spread operator* separa en pedacitos cada uno, así que al ponerlo dentro de un arreglo vacío, cada parte va a pasar a formar parte del arreglo.
+Usamos *spread operator* para separar en letras `g + materials`, ya que `Set` pide cada elemento como argumento, más no un solo arreglo, así que lo convertimos a partes separadas. Luego se vuelve a usar para convertir `Set` en un arreglo. *Spread operator* separa en pedacitos cada uno, así que al ponerlo dentro de un arreglo vacío, cada parte va a pasar a formar parte del arreglo.
 
 ## Ejemplo
 
