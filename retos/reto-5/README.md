@@ -50,7 +50,7 @@ Además, no olvidar que en el momento que pasen 5 segundos o iteraciones, debemo
 
 Lo que haremos para conservar los `*` es revisar si el reno se movió, en ese caso guardaremos la posición a la que se movió y en el siguiente movimiento la reemplazaremos, cosa que solo pasará hasta que el reno se pueda mover, ya que nuestro regex solo se ejecuta en movimientos válidos.
 
-Para guardar la posición y siguiente posición del reno, debemos usar una variable auxiliar, porque la del tiempo no mantiene los mismos valores de la posición del reno, puesto que a veces este se queda quito, esta variable, llamada `a` solo aumentará valor si el reno se movió:
+Para guardar la posición y siguiente posición del reno, debemos usar una variable auxiliar, porque la del tiempo no mantiene los mismos valores de la posición del reno, puesto que a veces este no se mueve, esta variable, llamada `a` solo aumentará valor si el reno se movió:
 
 ```js
 const newRoad = road.replace(/S[\.\*]/, `${b}S`);
