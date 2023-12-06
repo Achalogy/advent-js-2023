@@ -9,7 +9,7 @@ function maxDistance(movements) {
 
   let extra = movements.length - (right + left)
 
-  return Math.abs(distance) + Math.abs(extra)
+  return Math.abs(distance) + extra
 }
 
 module.exports = maxDistance

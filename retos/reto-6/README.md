@@ -1,72 +1,67 @@
-# Reto 5
+# Reto 6
 
-Santa 🎅 está probando su nuevo trineo eléctrico, el CyberReindeer, en una carretera del Polo Norte. La carretera se representa con una cadena de caracteres, donde:
+Los elfos están catalogando los renos de Santa 🦌 según la distancia que pueden recorrer.
 
-- . = Carretera
-- S = Trineo de Santa
-- \* = Barrera abierta
-- | = Barrera cerrada
+Para ello tienen una cadena de texto movements donde cada caracter representa la dirección del movimiento del reno:
 
-Ejemplo de carretera: `S...|....|.....`
+- \> = Avanza a la derecha
+- \< = Avanza a la izquierda
+- \* = Puede avanzar o retroceder
 
-Cada unidad de tiempo, **el trineo avanza una posición a la derecha**. Si encuentra una barrera cerrada, se detiene hasta que la barrera se abra. Si está abierta, la atraviesa directamente.
+Por ejemplo, si el movimiento es >>\*<, va hacia la derecha dos veces, luego puede ir a derecha o izquierda (lo que maximice la distancia recorrida final) y luego ir a la izquierda.
 
-**Todas las barreras empiezan cerradas**, pero después de 5 unidades de tiempo, se abren todas **para siempre.**
+Los elfos quieren saber cuál es la máxima distancia que recorre el reno al **finalizar todos los movimientos**.
 
-**Crea una función que simule el movimiento del trineo** durante un tiempo dado y **devuelva un array** de cadenas representando el estado de la carretera en cada unidad de tiempo:
+**En el ejemplo anterior, la máxima distancia que recorre el reno es 2**. Va a la derecha dos veces +2, luego con el \* puede ir a la derecha otra vez para maximizar la distancia +1 y luego va a la izquierda -1.
+
+Crea una función maxDistance que reciba la cadena de texto movements y devuelva **la máxima distancia** que puede recorrer el reno en **cualquier dirección**:
 
 ```js
-const road = "S..|...|..";
-const time = 10; // unidades de tiempo
-const result = cyberReindeer(road, time);
+const movements = ">>*<";
+const result = maxDistance(movements);
+console.log(result); // -> 2
 
-/* -> result:
-[
-'S..|...|..', // estado inicial
-'.S.|...|..', // avanza el trineo la carretera
-'..S|...|..', // avanza el trineo la carretera
-'..S|...|..', // el trineo para en la barrera
-'..S|...|..', // el trineo para en la barrera
-'...S..._..', // se abre la barrera, el trineo avanza
-'..._S.._..', // avanza el trineo la carretera
-'..._.S._..', // avanza el trineo la carretera
-'..._..S_..', // avanza el trineo la carretera
-'..._...S..', // avanza por la barrera abierta
-]
-*/
+const movements2 = "<<<>";
+const result2 = maxDistance(movements2);
+console.log(result2); // -> 2
+
+const movements3 = ">***>";
+const result3 = maxDistance(movements3);
+console.log(result3); // -> 5
 ```
 
-El resultado es un **array donde cada elemento muestra la carretera en cada unidad de tiempo**.
-
-Ten en cuenta que **si el trineo está en la misma posición que una barrera**, entonces toma su lugar en el array.
-
-Los elfos se **inspiraron en este** [**reto de Code Wars**](https://www.codewars.com/kata/5d0ae91acac0a50232e8a547/javascript).
+Ten en cuenta que no importa si es a la izquierda o la derecha, la distancia es **el valor absoluto de la distancia recorrida máxima al finalizar los movimientos**.
 
 # Solución
 
-Vamos a basar la solución en un regex que reemplazará `S.` y `S*`, ya que son los únicos movimientos válidos, pero tenemos un problema, y es que si pasamos por un `*`, debemos volver a ponerlo cuando hayamos avanzado nuevamente y esa posición quede atrás.
-
-Además, no olvidar que en el momento que pasen 5 segundos o iteraciones, debemos convertir todas las `|` a `*`.
-
-Lo que haremos para conservar los `*` es revisar si el reno se movió, en ese caso guardaremos la posición a la que se movió y en el siguiente movimiento la reemplazaremos, cosa que solo pasará hasta que el reno se pueda mover, ya que nuestro regex solo se ejecuta en movimientos válidos.
-
-Para guardar la posición y siguiente posición del reno, debemos usar una variable auxiliar, porque la del tiempo no mantiene los mismos valores de la posición del reno, puesto que a veces este no se mueve, esta variable, llamada `a` solo aumentará valor si el reno se movió:
+Lo primero que debemos hacer es encontrar la cantidad de movimientos a cada dirección, `>` para derecha y `<` para izquierda, la distancia que en realidad se alejo desde donde inicio, es la resta entre derecha e izquierda, el problema que surge es cuando se movio más veces a la izquierda, ya que nos dará un número negativo, ya que de todas formas el número esta bien, solo debemos quitar el negativo, esto se conoce como _valor absoluto_ y lo logramos con `Math.abs()`
 
 ```js
-const newRoad = road.replace(/S[\.\*]/, `${b}S`);
-if (newRoad != road) {
-  a++;
-  b = road[a];
-}
-
-// Se agrega el movimiento a la lista
-
-road = newRoad;
-moves.push(road);
+Math.abs(-5); // 5
 ```
 
-Algunas consideraciones:
+Encontrar la cantidad de movimientos a cada dirección se puede lograr de muchas formas, una de ellas usando regex para contar la cantidad de `<` `>`:
 
-- `b` se debe iniciar en `let b = "."`
-- `moves` por defecto ya trae el camino original `let moves = [road]`
-- Ya que tenemos el camino original en `moves`, solo ejecutaremos el ciclo `time-1` veces `for (let i = 1; i < time; i++)`
+```js
+let distance = 0;
+
+let right = movements.match(/>/g)?.length ?? 0;
+let left = movements.match(/</g)?.length ?? 0;
+
+distance += right;
+distance -= left;
+```
+
+Ahora solo quedan la cantidad de movimientos extra que deben maximizar el resultado, ya que nuestra distancia ya esta en numeros positivos, es como si en los casos en los que recorre más distancia a la izquierda, se hubiese invertido y hubiese recorrido más a la derecha. Es decir, que da igual el caso, siempre debemos sumar la cantidad de `*`.
+
+Se puede realizar otro regex para encontrar la cantidad de `*`, pero esto no es óptimo, ya que en realidad tenemos ese numero, solo debemos restar de la cantidad total de movimientos los movimientos de izquierda y derecha, ya que si sacamos estos, solo queda la cantidad de movimientos extra:
+
+```js
+let extra = movements.length - (right + left);
+```
+
+Ahora si debemos usar `Math.abs()` y a este valor absoluto sumarle los movimiento extra:
+
+```js
+return Math.abs(distance) + extra;
+```
