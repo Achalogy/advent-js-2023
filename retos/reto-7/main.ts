@@ -5,19 +5,19 @@ function drawGift(size, symbol) {
 
   let response = ""
 
-  let center = ""
+  let topCenter = ""
   let bottomCenter = ""
 
-  for (const a of [...Array.from({ length: size - 2 }).keys()]) {
+  for (const a of [...Array.from({ length: bgSize }).keys()]) {
     const c = "#"
       + symbol.repeat(bgSize)
       + "#" + symbol.repeat(a) + "#"
-    center += " ".repeat(size - a - 2) + c + "\n"
     bottomCenter = c + "\n" + bottomCenter
+    topCenter += " ".repeat(bgSize - a) + c + "\n"
   }
 
-  response = (" ".repeat(size) + "#".repeat(size) + "\n").slice(1)
-    + (center
+  response = " ".repeat(size - 1) + "#".repeat(size) + "\n"
+    + (topCenter
       + "#".repeat(size) + symbol.repeat(bgSize) + "#" + "\n"
       + bottomCenter
       + "#".repeat(size) + "\n").repeat(+!!(size - 1))
